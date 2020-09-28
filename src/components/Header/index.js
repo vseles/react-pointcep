@@ -1,14 +1,13 @@
 import React from 'react';
 import * as SC from './styles';
 import Logo from '../Logo';
-import { Shell } from '../../styles/generic';
 
 const Header = ( ) => {
   return (
     <SC.Header>
-      <Shell>
+      <SC.Shell>
         <Logo />
-      </Shell>
+      </SC.Shell>
     </SC.Header>
   );
 };
