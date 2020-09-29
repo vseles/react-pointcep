@@ -5,10 +5,14 @@ import { AppState } from '../../state/useAppState';
 
 const Search = () => {
 
-  const { cep, setCep } = useContext( AppState );
+  const {
+    cep, setCep,
+    loading, setLoading
+  } = useContext( AppState );
 
-  const _onSubmit = ( ) => {
+  const _onSubmit = ( event ) => {
 
+    event.preventDefault();
   };
 
   const _onCepChange = ( event ) => {
