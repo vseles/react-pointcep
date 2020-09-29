@@ -28,31 +28,6 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Label = styled.label`
-  color: ${ COLORS.LIGHT_BLUE };
-  display: inline-block;
-  position: absolute;
-  pointer-events: none;
-  cursor: text;
-  left: 5px;
-  top: -10px;
-  transition: all 150ms ease-in;
-`;
-
-export const Field = styled.input`
-  height: 40px;
-  padding: 5px;
-  margin: 12px 0;
-  outline: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 2px solid ${ COLORS.DARK_MAIN };
-  &:disabled {
-    cursor: not-allowed;
-  }
-`;
-
 export const Submit = styled.button`
   height: 40px;
   color: #fff;
