@@ -5,13 +5,13 @@ export const AppState = createContext();
 const AppStateProvider = props => {
 
   const [ cep, setCep ] = useState( '' );
-  const [ loading, setLoading ] = useState( false );
   const [ results, setResults ] = useState( null );
+  const [ searching, setSearching ] = useState( false );
 
   const provide = {
     cep, setCep,
     results, setResults,
-    loading, setLoading,
+    searching, setSearching,
   };
 
   return (

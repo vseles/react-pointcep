@@ -1,23 +1,45 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import * as SC from './styles';
 import Field from '../Field';
 import { AppState } from '../../state/useAppState';
+import fetchViaCep from '../../utils/fetchViaCep';
 
 const Search = () => {
 
   const {
     cep, setCep,
-    loading, setLoading
+    results, setResults,
+    searching, setSearching
   } = useContext( AppState );
 
   const _onSubmit = ( event ) => {
 
     event.preventDefault();
+
+    if ( !searching && !results ) {
+
+      if ( !!cep && cep.length === 9 ) {
+
+        setSearching( true );
+
+        fetchViaCep( cep ).then( ViaCepData => {
+
+          setSearching( false );
+          console.log('>>> ViaCepData: ', ViaCepData );
+
+        }).catch( err => {
+
+          setSearching( false );
+          console.error( err );
+        });
+      }
+    }
   };
 
   const _onCepChange = ( event ) => {
 
-    setCep( event.target.value );
+    const value = event.target.value;
+    setCep( value );
   };
 
   return (

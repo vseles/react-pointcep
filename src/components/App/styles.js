@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Shell as _Shell } from '../../styles/generic';
 
 export const Container = styled.div`

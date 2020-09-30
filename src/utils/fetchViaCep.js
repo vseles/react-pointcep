@@ -1,3 +1,5 @@
+import ViaCep from '../apis/ViaCep';
+
 const fetchViaCep = ( CEP ) => new Promise ( async ( resolve, reject ) => {
 
   try {

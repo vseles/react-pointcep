@@ -8,7 +8,7 @@ const Field = ( props ) => {
 
   const _onBlur = ( event ) => {
 
-    if ( !props.value || props.value === '' || String( props.value ).trim() === '' )
+    if ( !props.value || String( props.value ).trim() === '' )
       setActive( false );
   };
 

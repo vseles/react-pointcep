@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { COLORS } from '../../styles/constants';
 
 export const Search = styled.div`
