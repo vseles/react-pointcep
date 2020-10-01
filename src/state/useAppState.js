@@ -8,10 +8,16 @@ const AppStateProvider = props => {
   const [ results, setResults ] = useState( null );
   const [ searching, setSearching ] = useState( false );
 
+  const resetSearch = () => {
+    setCep('');
+    setResults(null);
+  };
+
   const provide = {
     cep, setCep,
     results, setResults,
     searching, setSearching,
+    resetSearch
   };
 
   return (

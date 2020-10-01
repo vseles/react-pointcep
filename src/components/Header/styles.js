@@ -1,12 +1,13 @@
 import styled from 'styled-components/macro';
-import { COLORS } from '../../styles/constants';
-import { Shell as _Shell } from '../../styles/generic';
+import { Colors } from '../../styles/constants';
+import { Shell as _Shell } from '../../styles/generics';
 
 export const Header = styled.header`
   height: 70px;
   display: flex;
   align-items: center;
-  background: ${ COLORS.DARK_MAIN };
+  background: ${ Colors.BASE_COLOR };
+  border-bottom: 1px solid ${ Colors.SUB_COLOR };
 `;
 
 export const Shell = styled( _Shell )`

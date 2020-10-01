@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro';
-import { COLORS } from '../../styles/constants';
+import { Colors } from '../../styles/constants';
 
 export const Container = styled.div`
   position: relative;
 `;
 
 export const Label = styled.label`
-  color: ${ props => props.active ? COLORS.LIGHT_BLUE : COLORS.LIGHT_GRAY };
+  color: ${ props => props.active ? Colors.SUB_COLOR : Colors.GRAY_COLOR };
   font-weight: ${ props => props.active ? '700' : '400' };
   display: inline-block;
   position: absolute;
@@ -26,7 +26,10 @@ export const Field = styled.input`
   border-top: none;
   border-left: none;
   border-right: none;
-  border-color: ${ COLORS.LIGHT_GRAY };
-  border-bottom: 1px solid;
-  &:disabled { cursor: not-allowed; }
+  border-bottom: ${ props => props.active ? '2px solid' : '1px solid' };
+  border-color: ${ props => props.active ? Colors.SUB_COLOR : Colors.GRAY_COLOR };
+  &.disabled {
+    cursor: not-allowed;
+    background: rgba(0,0,0, .0333);
+  }
 `;

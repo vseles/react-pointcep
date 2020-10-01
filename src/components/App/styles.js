@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Shell as _Shell } from '../../styles/generic';
+import { Shell as _Shell } from '../../styles/generics';
 
 export const Container = styled.div`
   min-height: 100%;
@@ -16,5 +16,6 @@ export const View = styled.div`
 export const Shell = styled( _Shell )`
   flex: 1;
   display: flex;
+  position: relative;
   justify-content: space-between;
 `;

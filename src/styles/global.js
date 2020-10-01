@@ -16,6 +16,14 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     background: #fff;
   }
+
+  button {
+    opacity: 1;
+    transition: all 150ms ease-in;
+    &:hover {
+      opacity: .8;
+    }
+  }
 `;
 
 export default GlobalStyle;

@@ -1,12 +1,12 @@
-export const COLORS = Object.freeze({
-  "DARK_MAIN": "#20232A",
-  "LIGHT_BLUE": "#61DAFB",
-  "LIGHT_GRAY": "#6D6D6D"
+export const Colors = Object.freeze({
+  "BASE_COLOR": "#fdfffe",
+  "SUB_COLOR": "#2274a5",
+  "GRAY_COLOR": "#6d6d6d"
 });
 
-export const BREAKPOINTS = Object.freeze({
+export const Breakpoints = Object.freeze({
   "FULL_WIDTH": "1280px",
   "DESKTOP_WIDTH": "1024px",
   "TABLET_WIDTH": "768px",
-  "MOBILE_WIDTH": "568px", 
+  "MOBILE_WIDTH": "640px", 
 });

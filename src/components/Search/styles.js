@@ -1,24 +1,33 @@
 import styled from 'styled-components/macro';
-import { COLORS } from '../../styles/constants';
+import { Colors } from '../../styles/constants';
+import { Breakpoints } from '../../styles/constants';
 
 export const Search = styled.div`
-  padding: 50px;
+  padding: 50px 10px;
   flex: 0 1 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 150ms ease-in;
+
+  @media screen and ( min-width: ${ Breakpoints.DESKTOP_WIDTH } ) {
+    padding: 50px;
+  }
+
+  @media screen and ( max-width: ${ Breakpoints.TABLET_WIDTH } ) {
+    padding: 25px;
+    flex: 0 1 100%;
+  }
 `;
 
 export const Title = styled.h1`
-  color: ${ COLORS.LIGHT_BLUE };
-  font-size: 225%;
+  color: ${ Colors.SUB_COLOR };
+  font-size: 220%;
   text-transform: lowercase;
   font-family: 'Metropolis Black';
 `;
 
 export const Text = styled.p`
-  color: ${ COLORS.LIGHT_GRAY };
+  color: ${ Colors.GRAY_COLOR };
   margin: 12px 0 20px 0;
 `;
 
@@ -29,17 +38,22 @@ export const Form = styled.form`
 `;
 
 export const Submit = styled.button`
-  height: 40px;
   color: #fff;
-  background: ${ COLORS.LIGHT_BLUE };
+  background: ${ Colors.SUB_COLOR };
   border-radius: 50px;
   border: none;
   outline: none;
   padding: 12px;
   max-width: 200px;
   margin-top: 12px;
+  cursor: pointer;
+
   &:disabled {
     cursor: not-allowed;
-    background-color: ${ COLORS.LIGHT_GRAY };
+    background-color: lightgray;
+  }
+
+  @media screen and ( max-width: ${ Breakpoints.TABLET_WIDTH } ) {
+    max-width: initial;
   }
 `;

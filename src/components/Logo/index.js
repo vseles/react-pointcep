@@ -1,12 +1,12 @@
 import React from 'react';
 import * as SC from './styles';
-import { RiMapPinFill } from 'react-icons/ri'
-import { COLORS } from '../../styles/constants';
+import { RiMapPinFill } from 'react-icons/ri';
+import { Colors } from '../../styles/constants';
 
-const Logo = () => {
+const Logo = ({ color, size }) => {
   return (
-    <SC.Logo>
-      <RiMapPinFill color={ COLORS.LIGHT_BLUE } size={ 32 } />
+    <SC.Logo color={ color || Colors.SUB_COLOR }>
+      <RiMapPinFill color={ color || Colors.SUB_COLOR } size={ size || 32 } />
       <SC.Title>PointCEP</SC.Title>
     </SC.Logo>
   );
