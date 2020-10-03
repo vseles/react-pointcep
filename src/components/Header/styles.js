@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Colors } from '../../styles/constants';
 import { Shell as _Shell } from '../../styles/generics';
 

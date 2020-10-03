@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Breakpoints } from './constants';
 
 export const Shell = styled.div`

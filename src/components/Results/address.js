@@ -20,7 +20,7 @@ const Address = ( props ) => {
   };
 
   const MapsConfig = {
-    key: process.env.REACT_APP_MAPS_KEY,
+    key: process.env.NEXT_PUBLIC_MAPS_KEY,
     language: 'pt-BR',
     region: 'br',
     libraries: ['places', 'geometry', 'drawing', 'visualization']

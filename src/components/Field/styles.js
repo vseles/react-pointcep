@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Colors } from '../../styles/constants';
 
 export const Container = styled.div`

@@ -2,7 +2,7 @@ import Geocode from 'react-geocode';
 
 const fetchGeocode = ( Address ) => new Promise (( resolve, reject ) => {
 
-  Geocode.setApiKey( process.env.REACT_APP_GEOCODE_KEY );
+  Geocode.setApiKey( process.env.NEXT_PUBLIC_GEOCODE_KEY );
   Geocode.setLanguage('pt-BR');
   Geocode.setRegion('BR');
   Geocode.fromAddress( Address ).then( response => {
