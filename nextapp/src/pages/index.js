@@ -1,6 +1,13 @@
+import App from '../components/App';
+import GlobalStyle from '../styles/global';
+import AppStateProvider from '../state/useAppState';
+
 const Home = () => {
   return (
-    <h1>Home page</h1>
+    <AppStateProvider>
+      <GlobalStyle />
+      <App />
+    </AppStateProvider>
   );
 };
 
