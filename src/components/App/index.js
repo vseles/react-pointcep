@@ -5,7 +5,7 @@ import Search from '../Search';
 import Results from '../Results';
 
 const App = () => (
-  <SC.Container>
+  <SC.Wrapper>
     <Header />
     <SC.View>
       <SC.Shell>
@@ -13,7 +13,7 @@ const App = () => (
         <Results />
       </SC.Shell>
     </SC.View> 
-  </SC.Container>
+  </SC.Wrapper>
 );
 
 export default App;

@@ -6,6 +6,7 @@ import fetchViaCep from '../../utils/fetchViaCep';
 import fetchGeocode from '../../utils/fetchGeocode';
 import { PulseLoader } from 'react-spinners';
 import { css } from 'styled-components';
+import swal from 'sweetalert';
 
 const Search = () => {
 
@@ -15,7 +16,9 @@ const Search = () => {
     searching, setSearching
   } = useContext( AppState );
 
-  const isDisabled = () => searching || !!results;
+  const isDisabled = ( ) => {
+    return searching || !!results;
+  };
 
   const _onSubmit = ( event ) => {
 
@@ -25,46 +28,11 @@ const Search = () => {
 
       if ( !!cep && cep.length === 9 ) {
 
-        setSearching( true );
+        handleRequest( cep );
+      
+      } else {
 
-        fetchViaCep( cep ).then( Address => {
-          
-          if ( !Address.erro ) {
-
-            const ParsedAddress = '' +
-              `${ Address.logradouro }, ${ Address.localidade }, ` +
-              `${ Address.bairro.split(' ')[ 0 ] }, ${ Address.uf }, ` +
-              `${ Address.cep }` +
-            '';
-
-            fetchGeocode( ParsedAddress ).then(({ lat, lng }) => {
-              
-              setSearching( false );
-              setResults({ ...Address, lat, lng });
-
-            }).catch( err => {
-
-              setSearching( false );
-              console.error( err );
-    
-              alert('Não foi possível efetuar a busca no Geocode.');
-            });
-
-          } else {
-
-            setSearching( false );
-            console.error( Address );
-
-            alert('Não foi possível efetuar a busca no ViaCep.');
-          }
-
-        }).catch( err => {
-
-          setSearching( false );
-          console.error( err );
-
-          alert('Não foi possível efetuar a busca no ViaCep.');
-        });
+        swal('CEP Inválido', 'O formato de CEP inserido é inválido.', 'error');
       }
     }
   };
@@ -72,6 +40,44 @@ const Search = () => {
   const _onCepChange = ( event ) => {
     const value = event.target.value;
     setCep( value );
+  };
+
+  const handleRequest = async ( CEP ) => {
+
+    try {
+
+      setSearching( true );
+    
+      const Address = await fetchViaCep( CEP );
+    
+      if (! Address.erro ) {
+    
+        const parseAddress = '' +
+          `${ Address.logradouro }, ${ Address.localidade }, ` +
+          `${ Address.bairro.split(' ')[ 0 ] }, ${ Address.uf }, ` +
+          `${ Address.cep }` +
+        '';
+    
+        const { lat, lng } = await fetchGeocode( parseAddress );
+    
+        setResults({ ...Address, lat, lng });
+        setSearching( false );
+    
+      } else {
+    
+        setSearching( false );
+        console.error( Address );
+
+        swal('Não foi possível efetuar a consulta', 'Verifique o CEP inserido ou sua conexão.', 'error');
+      }
+    
+    } catch ( e ) {
+    
+      setSearching( false );
+      console.error( e );
+
+      swal('Não foi possível efetuar a consulta', 'Verifique o CEP inserido ou sua conexão.', 'error');
+    }
   };
 
   return (

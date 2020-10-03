@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { Shell as _Shell } from '../../styles/generics';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   min-height: 100%;
   display: flex;
   flex-direction: column;

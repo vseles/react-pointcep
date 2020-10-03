@@ -1,6 +1,6 @@
 export const Colors = Object.freeze({
   "BASE_COLOR": "#fdfffe",
-  "SUB_COLOR": "#2274a5",
+  "SUB_COLOR": "#1678c2",
   "GRAY_COLOR": "#6d6d6d"
 });
 
