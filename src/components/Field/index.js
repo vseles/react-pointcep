@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as SC from './styles';
 import InputMask from 'react-input-mask';
 
@@ -6,7 +6,7 @@ const Field = ( props ) => {
 
   const [ active, setActive ] = useState( false );
   const [ focus, setFocus ] = useState( false );
-  const hasInput = input => !!input;
+  const hasInput = input => !!input && ( String( input ).trim !== '' );
 
   const _onBlur = ( event ) => {
     setFocus( false );
@@ -23,12 +23,15 @@ const Field = ( props ) => {
 
     if ( !hasInput( props.value ) && !focus )
       setActive( false );
+    else if ( hasInput( props.value ) && !active && !focus )
+      setActive( true );
 
   }, [ focus, props.value ]);
 
   const fieldHandlers = {
     maskChar: '',
     value: props.value,
+    type: props.type || 'text',
     onBlur: _onBlur,
     onFocus: _onFocus,
     focus: focus,

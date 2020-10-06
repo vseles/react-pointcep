@@ -1,4 +1,3 @@
-import React from 'react';
 import * as SC from './styles';
 import { RiMapPinFill } from 'react-icons/ri';
 import { Colors } from '../../styles/constants';

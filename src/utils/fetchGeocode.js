@@ -1,21 +1,18 @@
-import Geocode from 'react-geocode';
+import Geocode from '../apis/Geocode';
 
-const fetchGeocode = ( Address ) => new Promise (( resolve, reject ) => {
+const fetchGeocode = ( Address ) => new Promise ( async ( resolve, reject ) => {
 
-  Geocode.setApiKey( process.env.NEXT_PUBLIC_GEOCODE_KEY );
-  Geocode.setLanguage('pt-BR');
-  Geocode.setRegion('BR');
-  Geocode.fromAddress( Address ).then( response => {
+  try {
 
-    const { lat, lng } = response.results[0].geometry.location;
+    const response = await Geocode( Address );
+    const data = response.results || [];
 
-    return resolve({ lat, lng });
+    return resolve( data );
 
-  }, err => {
+  } catch ( e ) {
 
-    return reject( err );
-
-  });
+    return reject( e );
+  }
 });
 
 export default fetchGeocode;

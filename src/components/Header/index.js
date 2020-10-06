@@ -1,4 +1,3 @@
-import React from 'react';
 import * as SC from './styles';
 import Logo from '../Logo';
 

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { Colors } from './constants';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -17,12 +18,16 @@ const GlobalStyle = createGlobalStyle`
     background: #fff;
   }
 
-  button {
+  button, label, a {
     opacity: 1;
     transition: all 150ms ease-in;
     &:hover {
       opacity: .8;
     }
+  }
+
+  .swal-button {
+    background-color: ${ Colors.SUB_COLOR } !important;
   }
 `;
 

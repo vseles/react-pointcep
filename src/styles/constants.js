@@ -1,7 +1,8 @@
 export const Colors = Object.freeze({
   "BASE_COLOR": "#fdfffe",
   "SUB_COLOR": "#F44237",
-  "GRAY_COLOR": "#6d6d6d"
+  "GRAY_COLOR": "#6d6d6d",
+  "LIGHTGRAY_COLOR": "rgba(0, 0, 0, .5)"
 });
 
 export const Breakpoints = Object.freeze({

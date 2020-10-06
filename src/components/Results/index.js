@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AppState } from '../../state/useAppState';
 import * as SC from './styles';
 import Address from './address';
