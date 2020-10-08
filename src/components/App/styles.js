@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Shell as _Shell } from '../../styles/generics';
 
 export const Wrapper = styled.div`
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 `;

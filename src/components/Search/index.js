@@ -23,10 +23,6 @@ const Search = () => {
     return !!inputVal && ( String( inputVal ).trim() !== '' );
   };
 
-  const hasNumber = inputVal => {
-    return /\d/.test( inputVal );
-  };
-
   const isDisabled = ( ) => {
     return searching || !!results;
   };
@@ -37,34 +33,26 @@ const Search = () => {
 
     if ( !isDisabled() ) {
 
-      switch ( filter ) {
+      if ( FilterType.CEP === filter ) {
 
-        case FilterType.CEP: {
+        if ( hasInput( cep ) && cep.length === 9 ) {
 
-          if ( hasInput( cep ) && cep.length === 9 ) {
-
-            CepRequest( cep );
-          
-          } else {
-    
-            swal('CEP Inválido', 'O formato de CEP inserido é inválido.', 'error');
-          }
-
-          break;
+          CepRequest( cep );
+        
+        } else {
+  
+          swal('CEP Inválido', 'O formato de CEP inserido é inválido.', 'error');
         }
 
-        case FilterType.ADDRESS: {
+      } else if ( FilterType.ADDRESS === filter ) {
 
-          if ( hasInput( address ) ) {
+        if ( hasInput( address ) ) {
 
-            AddressRequest( address );
+          AddressRequest( address );
 
-          } else {
-    
-            swal('Endereço Inválido', 'Verifique o endereço inserido.', 'error');
-          }
-
-          break;
+        } else {
+  
+          swal('Endereço Inválido', 'Verifique o endereço inserido.', 'error');
         }
       }
     }
@@ -117,35 +105,32 @@ const Search = () => {
 
       const Geocode = await fetchGeocode( Address );
 
-      const { lat, lng } = Geocode[0].geometry.location;
-      const postalCode = Geocode[0]['address_components'].filter(( addrInfo ) => addrInfo.types[0] === 'postal_code' );
+      const country = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('country') );
 
-      if ( postalCode.length > 0 ) {
-
-        const cep_Geocode = postalCode[0].short_name || postalCode[0].long_name;
-
-        const ViaCep = await fetchViaCep( cep_Geocode );
-  
-        if (! ViaCep.erro ) {
-  
-          setResults({ ...ViaCep, lat, lng });
-          setSearching( false );
-  
-        } else {
-  
-          setSearching( false );
-          console.error( ViaCep );
-    
-          swal('Não foi possível efetuar a consulta', 'Verifique o endereço inserido ou sua conexão.', 'error');
-        }
-
-      } else {
+      if ( country[0].short_name !== 'BR' ) {
 
         setSearching( false );
-        console.error(`No postal code available.`);
-  
-        swal('Não foi possível efetuar a consulta', 'Verifique o endereço inserido ou sua conexão.', 'error');
+        swal('Consulta Inválida', 'Procure apenas por endereços nacionais.', 'error');
+        return ;
       }
+
+      const postalCode = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('postal_code') );
+      const streetName = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('route') );
+      const localName = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('sublocality_level_1') );
+      const cityName =  Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('administrative_area_level_2') );
+      const stateName = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('administrative_area_level_1') );      
+      const { lat, lng } = Geocode[0].geometry.location;
+
+      const dataSet = {
+        logradouro:  streetName[0] && streetName[0].long_name || '',
+        bairro: localName[0] && localName[0].long_name || '',
+        localidade: cityName[0] && cityName[0].long_name || '',
+        uf: stateName[0] && stateName[0].short_name || '',
+        cep: postalCode[0] && postalCode[0].short_name || ''
+      };
+
+      setResults({ ...dataSet, lat, lng });
+      setSearching( false );
 
     } catch ( e ) {
 
