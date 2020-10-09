@@ -4190,10 +4190,10 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-geocode@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.2.1.tgz#c9f58d979097272831a01ef0ebd89add8e15725a"
-  integrity sha512-kipHpIA1w0XbQ2x6BOpLsup9kui6yjjAaXigCtom85xiKDB2KqDlxYx7dzd68Hxd5KG27nSFiWNRLosjKVg6VQ==
+react-geocode@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.2.2.tgz#24b50366daf57fc22d7884ab2e5927aa3d17ce2e"
+  integrity sha512-z0fD9TNyn8lXe1+cWr7Gx3Mi2751CjLLHIkMOkBN1HMmE6vxNoQEW/2y5sMkcpkwoleUeuERTaHFea7XGgJ3rw==
   dependencies:
     regenerator-runtime "^0.13.3"
 

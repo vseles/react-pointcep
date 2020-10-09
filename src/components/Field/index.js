@@ -6,27 +6,15 @@ const Field = ( props ) => {
 
   const [ active, setActive ] = useState( false );
   const [ focus, setFocus ] = useState( false );
+
+  const _onBlur = ( event ) => setFocus( false );
+  const _onFocus = ( event ) => setFocus( true );
   const hasInput = input => !!input && ( String( input ).trim !== '' );
 
-  const _onBlur = ( event ) => {
-    setFocus( false );
-    if ( !hasInput( props.value ) )
-      setActive( false );
-  };
-
-  const _onFocus = ( event ) => {
-    setFocus( true );
-    setActive( true );
-  };
-
   useEffect(() => {
-
-    if ( !hasInput( props.value ) && !focus )
-      setActive( false );
-    else if ( hasInput( props.value ) && !active && !focus )
-      setActive( true );
-
-  }, [ focus, props.value ]);
+    ( hasInput( props.value ) || focus ) ?
+      setActive( true ) : setActive( false );
+  });
 
   const fieldHandlers = {
     maskChar: '',

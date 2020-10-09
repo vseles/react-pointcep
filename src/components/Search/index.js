@@ -33,26 +33,34 @@ const Search = () => {
 
     if ( !isDisabled() ) {
 
-      if ( FilterType.CEP === filter ) {
+      switch ( filter ) {
 
-        if ( hasInput( cep ) && cep.length === 9 ) {
+        case FilterType.CEP: {
 
-          CepRequest( cep );
-        
-        } else {
-  
-          swal('CEP Inválido', 'O formato de CEP inserido é inválido.', 'error');
+          if ( hasInput( cep ) && cep.length === 9 ) {
+
+            CepRequest( cep );
+          
+          } else {
+    
+            swal('CEP Inválido', 'O formato de CEP inserido é inválido.', 'error');
+          }
+
+          break;
         }
 
-      } else if ( FilterType.ADDRESS === filter ) {
+        case FilterType.ADDRESS: {
 
-        if ( hasInput( address ) ) {
+          if ( hasInput( address ) ) {
 
-          AddressRequest( address );
-
-        } else {
+            AddressRequest( address );
   
-          swal('Endereço Inválido', 'Verifique o endereço inserido.', 'error');
+          } else {
+    
+            swal('Endereço Inválido', 'Verifique o endereço inserido.', 'error');
+          }
+
+          break;
         }
       }
     }
@@ -104,7 +112,6 @@ const Search = () => {
       setSearching( true );
 
       const Geocode = await fetchGeocode( Address );
-
       const country = Geocode[0]['address_components'].filter(( addrsInfo ) => ~addrsInfo.types.indexOf('country') );
 
       if ( country[0].short_name !== 'BR' ) {
